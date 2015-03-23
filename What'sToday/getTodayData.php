@@ -82,6 +82,9 @@
         // 忌日項目を作成
         $i = createItem($dayTopicArr, $i, $rootNode->addChild('anniversary'), '記念日・年中行事');
 
+        // 記念日を作成
+        $i = createItem($dayTopicArr, $i, $rootNode->addChild('topic'), 'フィクションのできごと');
+        
         $dom = new DOMDocument('1.0');
         $dom->loadXML($rootNode->asXML());
         $dom->formatOutput = true;
@@ -153,7 +156,10 @@
                 continue;
             }
 
-            $node->addChild('item', removeExtraItems($dayTopicArr[$i]));
+            $ret = removeExtraItems($dayTopicArr[$i]);
+            if($ret){
+            	$node->addChild('item', $ret);
+            }
         }
 
         return $i;
@@ -179,6 +185,12 @@
 
         // 記号を削除
         $result = preg_replace('/[\'\[\]]/', '', $result);
+        
+        // （）を削除
+        $result = preg_replace('/（）/', '', $result);
+        
+        // 先頭の「: 」を削除
+        $result = preg_replace('/^\: ?/', '', $result);
 
         return $result;
     }
