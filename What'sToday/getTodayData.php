@@ -15,10 +15,19 @@
     // 月日の引数を取得します
     function getMonthDayArgs($args)
     {
+    	global $argc;
+    	global $argv;
+    	
         // 引数が設定されていない場合
         if(!isset($args))
         {
             return date('n月j日');
+        }
+        
+        // コマンドラインの引数として日付が設定されている場合
+        if($argc != 1){
+        	var_dump($argc);
+        	return $argv[1] . '月' . $argv[2] . '日';
         }
 
         // 月日の形式ではない場合
@@ -88,6 +97,7 @@
         $dom = new DOMDocument('1.0');
         $dom->loadXML($rootNode->asXML());
         $dom->formatOutput = true;
+        file_put_contents('sampleData/' . $monthday . '.xml', $dom->saveXML());
         echo $dom->saveXML();
     }
 
