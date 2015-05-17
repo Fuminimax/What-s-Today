@@ -3,5 +3,9 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/autoscroll.css')
+    script(src='/javascripts/autoscroll.js')
+    script.
+      window.onload = function() { auto_horizontal_scroll(); }
   body
     block content

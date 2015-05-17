@@ -1,0 +1,15 @@
+#ahs_displayBox {
+    width:	500px;
+    overflow:	hidden;
+    text-align:	center;
+    line-height: 2.0em;
+    font-size: 14px;
+    background-color: white;
+    border: 1px solid gray;
+}
+#ahs_scrollText {
+    white-space: nowrap;
+    margin: 0 0 0 500px;
+    width: 1200px;
+    text-align: left;
+}
